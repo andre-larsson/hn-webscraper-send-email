@@ -1,0 +1,8 @@
+{
+    "name": "hn-webscraper-mailsender",
+    "version": "1.0.0",
+    "dependencies": {
+	"@aws-sdk/client-ses": "^3.679.0",
+	"puppeteer": "^23.6.0"
+    }
+}

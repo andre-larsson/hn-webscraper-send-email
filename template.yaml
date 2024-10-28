@@ -1,0 +1,28 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Resources:
+  EmailSenderFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: EmailSenderFunction
+      Handler: src/run.run
+      Runtime: nodejs20.x
+      CodeUri: .
+      Environment:
+        Variables:
+          REGION_NAME: 'us-west-1'
+	  FROM_ADDRESS: 'from'
+	  TO_ADDRESS: 'to'
+      Policies:
+        - Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - ses:SendEmail
+              Resource: '*'
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /send-email
+            Method: POST
